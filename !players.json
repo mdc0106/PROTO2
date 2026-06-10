@@ -1,0 +1,32 @@
+[
+    {
+        "id": "a53718e3fe29d513",
+        "type": "rcon",
+        "z": "43e65184c9e59aed",
+        "name": "",
+        "server": "f4c5b35f53fc2f30",
+        "command": "",
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "af2e84fc82bf795b"
+            ]
+        ]
+    },
+    {
+        "id": "f4c5b35f53fc2f30",
+        "type": "serverconfig",
+        "host": "localhost",
+        "rconPort": 25575,
+        "rconPassword": "minecraft"
+    },
+    {
+        "id": "f432156cc0a33ad5",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@tomsith/node-red-contrib-minecraft": "0.7.7"
+        }
+    }
+]
