@@ -1,0 +1,31 @@
+[
+    {
+        "id": "dash-dd-serverinfo",
+        "type": "serverinfo",
+        "z": "tab-dashboard",
+        "name": "Players for Dropdown",
+        "server": "cfg-server",
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "dash-dd-func"
+            ]
+        ]
+    },
+    {
+        "id": "cfg-server",
+        "type": "serverconfig",
+        "host": "cabma201",
+        "rconPort": "25575",
+        "rconPassword": "RCON_PASSWORD_HERE"
+    },
+    {
+        "id": "e27bad86a05afe65",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@tomsith/node-red-contrib-minecraft": "0.7.7"
+        }
+    }
+]
