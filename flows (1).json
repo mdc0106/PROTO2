@@ -1,0 +1,851 @@
+[
+    {
+        "id": "dff0ac8e89ef1a2f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bd8554bac457bd8a",
+        "type": "inject",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "@everyone Pls respect the rules ",
+        "payloadType": "str",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "178983360407564a"
+            ]
+        ]
+    },
+    {
+        "id": "178983360407564a",
+        "type": "discordMessageManager",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "channel": "1467165546255745242",
+        "token": "",
+        "x": 350,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d4366213023f903c",
+        "type": "discordMessage",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "channelIdFilter": "1450828092829339855",
+        "token": "",
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "dda7024e259a86a7"
+            ]
+        ]
+    },
+    {
+        "id": "dda7024e259a86a7",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d72090355925dfe8",
+        "type": "rcon",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "rcon",
+        "server": "6fac9fa8e0be1e05",
+        "command": "list",
+        "x": 650,
+        "y": 220,
+        "wires": [
+            [
+                "33110778bcab422b"
+            ]
+        ]
+    },
+    {
+        "id": "06d946cc59dcd817",
+        "type": "discordMessage",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "channelIdFilter": "1450828092829339855",
+        "token": "",
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "d7c227099468a4e3",
+                "d2a1c3c93671f0e5"
+            ]
+        ]
+    },
+    {
+        "id": "33110778bcab422b",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d7c227099468a4e3",
+        "type": "switch",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "survival",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "creative",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "day",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "night",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Save",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "6fc419222ab728f2"
+            ],
+            [
+                "82a17557e4434e22"
+            ],
+            [
+                "4a293f1633c4a019"
+            ],
+            [
+                "eb5dfd945977109b"
+            ],
+            [
+                "55259685a83dc8ad"
+            ]
+        ]
+    },
+    {
+        "id": "6fc419222ab728f2",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "srvl",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "gamemode survival @a",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "d72090355925dfe8"
+            ]
+        ]
+    },
+    {
+        "id": "82a17557e4434e22",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "crtv",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "gamemode creative @a",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "d72090355925dfe8"
+            ]
+        ]
+    },
+    {
+        "id": "a5f92da4c451b95e",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "884a923ba50e4328",
+        "type": "discordMessageManager",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "channel": "1466042509867225181",
+        "token": "",
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "a5f92da4c451b95e"
+            ]
+        ]
+    },
+    {
+        "id": "987238854c693c4b",
+        "type": "function",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "function 1",
+        "func": "// Récupérer la liste des joueurs actuelle\nlet currentPlayers = msg.payload.players || [];\nlet lastPlayers = flow.get('lastPlayers') || [];\nlet messageId = flow.get('discordMessageId'); // Récupérer l'ID du message précédent\n\n// Mettre à jour la liste mémorisée pour la prochaine comparaison\nflow.set('lastPlayers', currentPlayers);\n\n// Si la liste n'a pas changé, on ne fait rien\nif (JSON.stringify(currentPlayers) === JSON.stringify(lastPlayers)) {\n    return null; \n}\n\n// -- La liste a changé, on prépare le message --\nlet playerCount = currentPlayers.length;\nlet names = currentPlayers.map(player => player.name);\nlet description = `👥 Joueurs en ligne (${playerCount}) : ${names.join(', ')}`;\n\n// On prépare l'objet JSON attendu par Discord pour l'embed\nlet discordPayload = {\n    \"content\": \"\",\n    \"embeds\": [{\n        \"title\": \"Statut du Serveur Minecraft\",\n        \"description\": description,\n        \"color\": 3447003, // Bleu\n        \"timestamp\": new Date().toISOString()\n    }]\n};\nmsg.payload = discordPayload;\n\n// Si c'est le premier message, on fait un POST pour créer le message et on mémorise l'ID\nif (!messageId) {\n    msg.method = \"POST\";\n    // On doit dire à Discord d'attendre la confirmation pour nous renvoyer l'ID dans la réponse\n    msg.url = \"TA_URL_DE_WEBHOOK_DISCORD\" + \"?wait=true\"; \n    \n    // Le nœud HTTP Request suivant va envoyer ce message et renvoyer la réponse.\n    return msg; \n\n} else {\n    // Si l'ID existe, on fait un PATCH pour éditer le message existant\n    msg.method = \"PATCH\";\n    msg.url = `https://discord.com{messageId}`;\n    return msg;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "884a923ba50e4328"
+            ]
+        ]
+    },
+    {
+        "id": "c0001fcb968226fd",
+        "type": "inject",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "8ebcc520d92d869c"
+            ]
+        ]
+    },
+    {
+        "id": "8ebcc520d92d869c",
+        "type": "serverinfo",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "server info",
+        "server": "6fac9fa8e0be1e05",
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "987238854c693c4b"
+            ]
+        ]
+    },
+    {
+        "id": "4a293f1633c4a019",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "day",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "/time set day",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "7ded59eb19a21ca7"
+            ]
+        ]
+    },
+    {
+        "id": "55259685a83dc8ad",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "save-all",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "save-all",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 400,
+        "wires": [
+            [
+                "672a91a2b3a68a5a"
+            ]
+        ]
+    },
+    {
+        "id": "672a91a2b3a68a5a",
+        "type": "servermanage",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "saveall",
+        "server": "6fac9fa8e0be1e05",
+        "action": "save-all",
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "da4a0eaf0e7599df"
+            ]
+        ]
+    },
+    {
+        "id": "049cf71dbe69cfb2",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4bf7bdb9147795bb",
+        "type": "inject",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "55259685a83dc8ad",
+                "d72090355925dfe8",
+                "a58a8080d02ae56e"
+            ]
+        ]
+    },
+    {
+        "id": "a60dc3c20c354dfa",
+        "type": "discordActivity",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "atext": "minecraft",
+        "aurl": "",
+        "atype": "3",
+        "astatus": "online",
+        "token": "",
+        "x": 300,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "daad4683b23de9f6",
+        "type": "inject",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "a60dc3c20c354dfa"
+            ]
+        ]
+    },
+    {
+        "id": "a58a8080d02ae56e",
+        "type": "playermanage",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "playermanage",
+        "server": "6fac9fa8e0be1e05",
+        "action": "kick",
+        "gamemode": "survival",
+        "x": 680,
+        "y": 500,
+        "wires": [
+            [
+                "aba03cea1bac62bb"
+            ]
+        ]
+    },
+    {
+        "id": "d2a1c3c93671f0e5",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "kick",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "kick",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 500,
+        "wires": [
+            [
+                "a58a8080d02ae56e"
+            ]
+        ]
+    },
+    {
+        "id": "aba03cea1bac62bb",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7ded59eb19a21ca7",
+        "type": "world",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "server": "6fac9fa8e0be1e05",
+        "action": "time",
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "049cf71dbe69cfb2"
+            ]
+        ]
+    },
+    {
+        "id": "da4a0eaf0e7599df",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "eb5dfd945977109b",
+        "type": "change",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "night",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "night",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "7ded59eb19a21ca7"
+            ]
+        ]
+    },
+    {
+        "id": "74bfe84244c60629",
+        "type": "ui-chart",
+        "z": "dff0ac8e89ef1a2f",
+        "group": "1bc23ea15a071abf",
+        "name": "",
+        "label": "Playercount",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "linear",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "20",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": "90",
+        "removeOlderUnit": "86400",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 670,
+        "y": 620,
+        "wires": [
+            [
+                "d0f7cfd62699a43c"
+            ]
+        ]
+    },
+    {
+        "id": "2df679f399291584",
+        "type": "serverinfo",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "server": "6fac9fa8e0be1e05",
+        "x": 310,
+        "y": 620,
+        "wires": [
+            [
+                "58dae38773aac6ea"
+            ]
+        ]
+    },
+    {
+        "id": "147d3e94e59ec1a1",
+        "type": "inject",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "online",
+        "payloadType": "str",
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "2df679f399291584"
+            ]
+        ]
+    },
+    {
+        "id": "58dae38773aac6ea",
+        "type": "function",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "function 2",
+        "func": "\nif (msg.payload && typeof msg.payload.online !== 'undefined') {\n    \n    msg.payload = msg.payload.online;\n    return msg;\n}\nelse {\n    \n    msg.payload = 0;\n    return msg;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "74bfe84244c60629"
+            ]
+        ]
+    },
+    {
+        "id": "d0f7cfd62699a43c",
+        "type": "debug",
+        "z": "dff0ac8e89ef1a2f",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6fac9fa8e0be1e05",
+        "type": "serverconfig",
+        "host": "192.168.178.64",
+        "rconPort": "25575",
+        "rconPassword": "changeme"
+    },
+    {
+        "id": "1bc23ea15a071abf",
+        "type": "ui-group",
+        "name": "Server player count",
+        "page": "2d53af19a77367da",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "2d53af19a77367da",
+        "type": "ui-page",
+        "name": "Server",
+        "ui": "fd1339678c5ddbb4",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "3f4372398121e3bd",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "fd1339678c5ddbb4",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "3f4372398121e3bd",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "039e61ba73878f8d",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-discord-advanced": "3.6.0",
+            "@tomsith/node-red-contrib-minecraft": "0.7.7",
+            "@flowfuse/node-red-dashboard": "1.29.0"
+        }
+    }
+]

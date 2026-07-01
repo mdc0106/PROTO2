@@ -1,0 +1,239 @@
+[
+    {
+        "id": "cmd-report-listen",
+        "type": "discordMessage",
+        "z": "tab-commands",
+        "name": "Listen for !report",
+        "channelIdFilter": "1521560568253644881",
+        "token": "",
+        "x": 120,
+        "y": 760,
+        "wires": [
+            [
+                "cmd-report-filter"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-filter",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Filter !report",
+        "func": "const raw = (msg.payload || '').toString().trim();\nif (!raw.toLowerCase().startsWith('!report ')) return null;\nconst reportMsg = raw.slice(8).trim();\nconst author = msg.author ? (msg.author.username || 'Unknown') : 'Unknown';\nmsg.reportMsg = reportMsg;\nmsg.author = author;\nmsg.payload = { author, message: reportMsg, time: new Date().toISOString(), status: 'Open' };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 760,
+        "wires": [
+            [
+                "cmd-report-ack",
+                "cmd-report-api",
+                "cmd-report-dashboard"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-api",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Create Channel Payload",
+        "func": "const channelName = `ticket-${msg.author.toLowerCase().replace(/[^a-z0-9]/g,'-').substring(0,20)}-${Date.now().toString().slice(-4)}`;\nmsg.url = 'https://discord.com/api/v10/guilds/1450828091776565442/channels';\nmsg.method = 'POST';\nmsg.headers = {\n  'Content-Type': 'application/json',\n  'Authorization': `Bot BOT_TOKEN_HERE`\n};\nmsg.payload = JSON.stringify({\n  name: channelName,\n  type: 0,\n  topic: `Ticket from ${msg.author}: ${msg.reportMsg}`,\n  permission_overwrites: []\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 800,
+        "wires": [
+            [
+                "cmd-report-http"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-dashboard",
+        "type": "ui-table",
+        "z": "tab-commands",
+        "group": "grp-tickets",
+        "name": "Ticket Table",
+        "label": "Open Tickets",
+        "order": 1,
+        "width": "12",
+        "height": "6",
+        "maxrows": 20,
+        "passthru": false,
+        "autocols": true,
+        "x": 640,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cmd-report-ack",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Ticket Ack",
+        "func": "msg.payload = `🎟️ **Ticket ouvert** par **${msg.author}** :\\n> ${msg.reportMsg}\\nUn canal privé va être créé pour votre demande.`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 720,
+        "wires": [
+            [
+                "cmd-report-reply"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-http",
+        "type": "http request",
+        "z": "tab-commands",
+        "name": "Discord API Create Channel",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 900,
+        "y": 800,
+        "wires": [
+            [
+                "cmd-report-http-debug"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-reply",
+        "type": "discordMessageManager",
+        "z": "tab-commands",
+        "name": "Ack in Bot Tester",
+        "channel": "1450828092829339855",
+        "token": "",
+        "x": 880,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cmd-report-http-debug",
+        "type": "debug",
+        "z": "tab-commands",
+        "name": "Channel Created",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1140,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "grp-tickets",
+        "type": "ui-group",
+        "name": "Active Tickets",
+        "page": "cfg-page-controls",
+        "width": "12",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cfg-page-controls",
+        "type": "ui-page",
+        "name": "Controls",
+        "ui": "cfg-ui-base",
+        "path": "/controls",
+        "icon": "gamepad-variant",
+        "layout": "grid",
+        "theme": "cfg-ui-theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 4,
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cfg-ui-base",
+        "type": "ui-base",
+        "name": "PROTO2 Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 3,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "cfg-ui-theme",
+        "type": "ui-theme",
+        "name": "Dark Theme",
+        "colors": {
+            "surface": "#1e1e2e",
+            "primary": "#7c3aed",
+            "bgPage": "#13131f",
+            "groupBg": "#1e1e2e",
+            "groupOutline": "#3f3f5c"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "8px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "1e6ce6a9dd3d3d79",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-discord-advanced": "3.6.0",
+            "@flowfuse/node-red-dashboard": "1.29.0"
+        }
+    }
+]

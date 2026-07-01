@@ -1,0 +1,1675 @@
+[
+    {
+        "id": "86bc9d9fbae6cd75",
+        "type": "tab",
+        "label": "Flux 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "tab-bot",
+        "type": "tab",
+        "label": "1 - Bot Setup",
+        "disabled": false,
+        "info": "Bot token config and activity status"
+    },
+    {
+        "id": "tab-commands",
+        "type": "tab",
+        "label": "2 - Discord Commands",
+        "disabled": false,
+        "info": "!commands from Bot Tester channel -> Minecraft RCON"
+    },
+    {
+        "id": "tab-monitor",
+        "type": "tab",
+        "label": "3 - Server Monitor",
+        "disabled": false,
+        "info": "Auto-post server status to Discord every 30s"
+    },
+    {
+        "id": "tab-players",
+        "type": "tab",
+        "label": "4 - Player Events",
+        "disabled": false,
+        "info": "Detect join/leave events and post to Discord"
+    },
+    {
+        "id": "tab-dashboard",
+        "type": "tab",
+        "label": "5 - Dashboard",
+        "disabled": false,
+        "info": "Full web admin panel"
+    },
+    {
+        "id": "cfg-server",
+        "type": "serverconfig",
+        "host": "cabma201",
+        "rconPort": "25575",
+        "rconPassword": "RCON_PASSWORD_HERE"
+    },
+    {
+        "id": "cfg-token",
+        "type": "discord-token",
+        "name": "potato unpaid worker"
+    },
+    {
+        "id": "cfg-ui-base",
+        "type": "ui-base",
+        "name": "PROTO2 Dashboard",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 3,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "cfg-ui-theme",
+        "type": "ui-theme",
+        "name": "Dark Theme",
+        "colors": {
+            "surface": "#1e1e2e",
+            "primary": "#7c3aed",
+            "bgPage": "#13131f",
+            "groupBg": "#1e1e2e",
+            "groupOutline": "#3f3f5c"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "8px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "cfg-page-players",
+        "type": "ui-page",
+        "name": "Players",
+        "ui": "cfg-ui-base",
+        "path": "/players",
+        "icon": "account-group",
+        "layout": "grid",
+        "theme": "cfg-ui-theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cfg-page-server",
+        "type": "ui-page",
+        "name": "Server",
+        "ui": "cfg-ui-base",
+        "path": "/server",
+        "icon": "server",
+        "layout": "grid",
+        "theme": "cfg-ui-theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cfg-page-hardware",
+        "type": "ui-page",
+        "name": "Hardware",
+        "ui": "cfg-ui-base",
+        "path": "/hardware",
+        "icon": "chip",
+        "layout": "grid",
+        "theme": "cfg-ui-theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 3,
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cfg-page-controls",
+        "type": "ui-page",
+        "name": "Controls",
+        "ui": "cfg-ui-base",
+        "path": "/controls",
+        "icon": "gamepad-variant",
+        "layout": "grid",
+        "theme": "cfg-ui-theme",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 4,
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-online",
+        "type": "ui-group",
+        "name": "Online Players",
+        "page": "cfg-page-players",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-pcount",
+        "type": "ui-group",
+        "name": "Player Count History",
+        "page": "cfg-page-players",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-uptime",
+        "type": "ui-group",
+        "name": "Uptime",
+        "page": "cfg-page-server",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-mcstatus",
+        "type": "ui-group",
+        "name": "Server Status",
+        "page": "cfg-page-server",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-cpu",
+        "type": "ui-group",
+        "name": "CPU",
+        "page": "cfg-page-hardware",
+        "width": "4",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-ram",
+        "type": "ui-group",
+        "name": "RAM",
+        "page": "cfg-page-hardware",
+        "width": "4",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-temp",
+        "type": "ui-group",
+        "name": "Temperature",
+        "page": "cfg-page-hardware",
+        "width": "4",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-kickban",
+        "type": "ui-group",
+        "name": "Kick / Ban Player",
+        "page": "cfg-page-controls",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-restart",
+        "type": "ui-group",
+        "name": "Server Restart",
+        "page": "cfg-page-controls",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "grp-tickets",
+        "type": "ui-group",
+        "name": "Active Tickets",
+        "page": "cfg-page-controls",
+        "width": "12",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "bot-inject",
+        "type": "inject",
+        "z": "tab-bot",
+        "name": "Set Activity on Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 2,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "bot-activity"
+            ]
+        ]
+    },
+    {
+        "id": "bot-activity",
+        "type": "discordActivity",
+        "z": "tab-bot",
+        "name": "Watching Minecraft",
+        "atext": "Minecraft Server",
+        "aurl": "",
+        "atype": "3",
+        "astatus": "online",
+        "token": "cfg-token",
+        "x": 400,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bot-activity-debug",
+        "type": "debug",
+        "z": "tab-bot",
+        "name": "Activity Status",
+        "active": true,
+        "tosidebar": true,
+        "complete": "true",
+        "targetType": "full",
+        "x": 640,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cmd-listen",
+        "type": "discordMessage",
+        "z": "tab-commands",
+        "name": "Listen Bot Tester",
+        "channelIdFilter": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "cmd-router"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-router",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Command Router",
+        "func": "const raw = (msg.payload || '').toString().trim().toLowerCase();\nconst full = (msg.payload || '').toString().trim();\n\nif (raw === '!survival')   { msg.cmd = 'survival';   return [msg,null,null,null,null,null,null,null]; }\nif (raw === '!creative')   { msg.cmd = 'creative';   return [null,msg,null,null,null,null,null,null]; }\nif (raw === '!day')        { msg.cmd = 'day';        return [null,null,msg,null,null,null,null,null]; }\nif (raw === '!night')      { msg.cmd = 'night';      return [null,null,null,msg,null,null,null,null]; }\nif (raw === '!save')       { msg.cmd = 'save';       return [null,null,null,null,msg,null,null,null]; }\nif (raw === '!list')       { msg.cmd = 'list';       return [null,null,null,null,null,msg,null,null]; }\nif (raw.startsWith('!kick ')) { msg.target = full.slice(6).trim(); return [null,null,null,null,null,null,msg,null]; }\nif (raw.startsWith('!ban '))  { msg.target = full.slice(5).trim(); return [null,null,null,null,null,null,null,msg]; }\nreturn null;",
+        "outputs": 8,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "cmd-survival"
+            ],
+            [
+                "cmd-creative"
+            ],
+            [
+                "cmd-day"
+            ],
+            [
+                "cmd-night"
+            ],
+            [
+                "cmd-save"
+            ],
+            [
+                "cmd-list"
+            ],
+            [
+                "cmd-kick"
+            ],
+            [
+                "cmd-ban"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-survival",
+        "type": "change",
+        "z": "tab-commands",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "gamemode survival @a",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-creative",
+        "type": "change",
+        "z": "tab-commands",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "gamemode creative @a",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-day",
+        "type": "change",
+        "z": "tab-commands",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "time set day",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-night",
+        "type": "change",
+        "z": "tab-commands",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "time set night",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-save",
+        "type": "servermanage",
+        "z": "tab-commands",
+        "name": "save-all",
+        "server": "cfg-server",
+        "action": "save-all",
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-list",
+        "type": "serverinfo",
+        "z": "tab-commands",
+        "name": "list players",
+        "server": "cfg-server",
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "cmd-list-format"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-list-format",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Format Player List",
+        "func": "const p = msg.payload || {};\nconst names = (p.players || []).map(x => x.name).join(', ') || 'Aucun joueur';\nmsg.payload = `👥 **${p.online || 0}/${p.max || 20}** joueurs en ligne: ${names}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "cmd-reply"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-kick",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Kick",
+        "func": "msg.payload = `kick ${msg.target} Kicked by admin`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 580,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-ban",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Ban",
+        "func": "msg.payload = `ban ${msg.target} Banned by admin`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 640,
+        "wires": [
+            [
+                "cmd-rcon",
+                "cmd-ack"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-rcon",
+        "type": "rcon",
+        "z": "tab-commands",
+        "name": "RCON Execute",
+        "server": "cfg-server",
+        "command": "",
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "cmd-rcon-debug"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-rcon-debug",
+        "type": "debug",
+        "z": "tab-commands",
+        "name": "RCON Result",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 840,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "cmd-ack",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Ack Message",
+        "func": "const cmdMap = {\n  'gamemode survival @a': '✅ Mode **Survie** activé pour tous.',\n  'gamemode creative @a': '✅ Mode **Créatif** activé pour tous.',\n  'time set day':         '☀️ Heure réglée sur **Jour**.',\n  'time set night':       '🌙 Heure réglée sur **Nuit**.'\n};\nmsg.payload = cmdMap[msg.payload] || ('✅ Commande exécutée: ' + msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 300,
+        "wires": [
+            [
+                "cmd-reply"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-reply",
+        "type": "discordMessageManager",
+        "z": "tab-commands",
+        "name": "Reply to Bot Tester",
+        "channel": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 860,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cmd-report-listen",
+        "type": "discordMessage",
+        "z": "tab-commands",
+        "name": "Listen for !report",
+        "channelIdFilter": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 120,
+        "y": 760,
+        "wires": [
+            [
+                "cmd-report-filter"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-filter",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Filter !report",
+        "func": "const raw = (msg.payload || '').toString().trim();\nif (!raw.toLowerCase().startsWith('!report ')) return null;\nconst reportMsg = raw.slice(8).trim();\nconst author = msg.author ? (msg.author.username || 'Unknown') : 'Unknown';\nmsg.reportMsg = reportMsg;\nmsg.author = author;\nmsg.payload = { author, message: reportMsg, time: new Date().toISOString(), status: 'Open' };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 760,
+        "wires": [
+            [
+                "cmd-report-ack",
+                "cmd-report-api",
+                "cmd-report-dashboard"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-ack",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Ticket Ack",
+        "func": "msg.payload = `🎟️ **Ticket ouvert** par **${msg.author}** :\\n> ${msg.reportMsg}\\nUn canal privé va être créé pour votre demande.`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 720,
+        "wires": [
+            [
+                "cmd-report-reply"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-reply",
+        "type": "discordMessageManager",
+        "z": "tab-commands",
+        "name": "Ack in Bot Tester",
+        "channel": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 880,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cmd-report-api",
+        "type": "function",
+        "z": "tab-commands",
+        "name": "Build Create Channel Payload",
+        "func": "const channelName = `ticket-${msg.author.toLowerCase().replace(/[^a-z0-9]/g,'-').substring(0,20)}-${Date.now().toString().slice(-4)}`;\nmsg.url = 'https://discord.com/api/v10/guilds/1450828091776565442/channels';\nmsg.method = 'POST';\nmsg.headers = {\n  'Content-Type': 'application/json',\n  'Authorization': `Bot BOT_TOKEN_HERE`\n};\nmsg.payload = JSON.stringify({\n  name: channelName,\n  type: 0,\n  topic: `Ticket from ${msg.author}: ${msg.reportMsg}`,\n  permission_overwrites: []\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 800,
+        "wires": [
+            [
+                "cmd-report-http"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-http",
+        "type": "http request",
+        "z": "tab-commands",
+        "name": "Discord API Create Channel",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "x": 900,
+        "y": 800,
+        "wires": [
+            [
+                "cmd-report-http-debug"
+            ]
+        ]
+    },
+    {
+        "id": "cmd-report-http-debug",
+        "type": "debug",
+        "z": "tab-commands",
+        "name": "Channel Created",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1140,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cmd-report-dashboard",
+        "type": "ui-table",
+        "z": "tab-commands",
+        "group": "grp-tickets",
+        "name": "Ticket Table",
+        "label": "Open Tickets",
+        "order": 1,
+        "width": "12",
+        "height": "6",
+        "maxrows": 20,
+        "passthru": false,
+        "autocols": true,
+        "x": 640,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "mon-inject",
+        "type": "inject",
+        "z": "tab-monitor",
+        "name": "Every 30s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 5,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "mon-serverinfo"
+            ]
+        ]
+    },
+    {
+        "id": "mon-serverinfo",
+        "type": "serverinfo",
+        "z": "tab-monitor",
+        "name": "Get Server Info",
+        "server": "cfg-server",
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "mon-format-func"
+            ]
+        ]
+    },
+    {
+        "id": "mon-format-func",
+        "type": "function",
+        "z": "tab-monitor",
+        "name": "Format Status Message",
+        "func": "const p = msg.payload || {};\nconst online = p.online != null ? p.online : '?';\nconst max = p.max || 20;\nconst version = p.version || 'unknown';\nconst names = (p.players || []).map(x => x.name);\nconst nameStr = names.length > 0 ? names.join(', ') : 'Aucun';\n\nconst prev = flow.get('lastOnline');\nflow.set('lastOnline', online);\n\n// Only post if player count changed\nif (prev === online) return null;\n\nmsg.payload = {\n  content: '',\n  embeds: [{\n    title: '📊 Statut du Serveur Minecraft',\n    color: online > 0 ? 5763719 : 10038562,\n    fields: [\n      { name: '👥 Joueurs', value: `${online} / ${max}`, inline: true },\n      { name: '🎮 Version', value: version, inline: true },\n      { name: '📋 En ligne', value: nameStr, inline: false }\n    ],\n    timestamp: new Date().toISOString()\n  }]\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "mon-discord-post"
+            ]
+        ]
+    },
+    {
+        "id": "mon-discord-post",
+        "type": "discordMessageManager",
+        "z": "tab-monitor",
+        "name": "Post to Bot Tester",
+        "channel": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 800,
+        "y": 80,
+        "wires": [
+            [
+                "mon-debug"
+            ]
+        ]
+    },
+    {
+        "id": "mon-debug",
+        "type": "debug",
+        "z": "tab-monitor",
+        "name": "Monitor Debug",
+        "active": false,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1020,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "evt-inject",
+        "type": "inject",
+        "z": "tab-players",
+        "name": "Poll Every 10s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 3,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "evt-serverinfo"
+            ]
+        ]
+    },
+    {
+        "id": "evt-serverinfo",
+        "type": "serverinfo",
+        "z": "tab-players",
+        "name": "Get Players",
+        "server": "cfg-server",
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "evt-diff-func"
+            ]
+        ]
+    },
+    {
+        "id": "evt-diff-func",
+        "type": "function",
+        "z": "tab-players",
+        "name": "Detect Join / Leave",
+        "func": "const current = (msg.payload && msg.payload.players) ? msg.payload.players.map(p => p.name) : [];\nconst prev = flow.get('playerList') || [];\nflow.set('playerList', current);\n\nconst joined = current.filter(n => !prev.includes(n));\nconst left = prev.filter(n => !current.includes(n));\n\nconst msgs = [];\njoined.forEach(name => msgs.push({ payload: `✅ **${name}** a rejoint le serveur!` }));\nleft.forEach(name =>   msgs.push({ payload: `👋 **${name}** a quitté le serveur.` }));\n\nif (msgs.length === 0) return null;\nreturn [msgs];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "evt-discord-notify"
+            ]
+        ]
+    },
+    {
+        "id": "evt-discord-notify",
+        "type": "discordMessageManager",
+        "z": "tab-players",
+        "name": "Notify Bot Tester",
+        "channel": "1450828092829339855",
+        "token": "cfg-token",
+        "x": 800,
+        "y": 80,
+        "wires": [
+            [
+                "evt-debug"
+            ]
+        ]
+    },
+    {
+        "id": "evt-debug",
+        "type": "debug",
+        "z": "tab-players",
+        "name": "Event Debug",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1020,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "dash-poll-inject",
+        "type": "inject",
+        "z": "tab-dashboard",
+        "name": "Poll 10s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 3,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "dash-serverinfo"
+            ]
+        ]
+    },
+    {
+        "id": "dash-serverinfo",
+        "type": "serverinfo",
+        "z": "tab-dashboard",
+        "name": "Server Info",
+        "server": "cfg-server",
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "dash-split-func"
+            ]
+        ]
+    },
+    {
+        "id": "dash-split-func",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Split Outputs",
+        "func": "const p = msg.payload || {};\nconst online = p.online != null ? p.online : 0;\nconst players = (p.players || []).map(pl => ({ name: pl.name, status: '🟢 Online' }));\nconst countMsg = { payload: online, topic: 'players' };\nconst tableMsg = { payload: players };\nconst statusMsg = { payload: p.online != null ? '🟢 Online' : '🔴 Offline', online, max: p.max || 20, version: p.version || '' };\nreturn [ countMsg, tableMsg, statusMsg ];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "dash-count-chart"
+            ],
+            [
+                "dash-player-table"
+            ],
+            [
+                "dash-status-text"
+            ]
+        ]
+    },
+    {
+        "id": "dash-count-chart",
+        "type": "ui-chart",
+        "z": "tab-dashboard",
+        "group": "grp-pcount",
+        "name": "Player Count",
+        "label": "Players Online",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "timestamp",
+        "ymin": "0",
+        "ymax": "20",
+        "action": "append",
+        "stackSeries": false,
+        "removeOlder": "24",
+        "removeOlderUnit": "3600",
+        "width": "6",
+        "height": "4",
+        "x": 820,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-player-table",
+        "type": "ui-table",
+        "z": "tab-dashboard",
+        "group": "grp-online",
+        "name": "Player Table",
+        "label": "Online Players",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "maxrows": 20,
+        "passthru": false,
+        "autocols": true,
+        "x": 820,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-status-text",
+        "type": "ui-text",
+        "z": "tab-dashboard",
+        "group": "grp-mcstatus",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "MC Status",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "dash-uptime-inject",
+        "type": "inject",
+        "z": "tab-dashboard",
+        "name": "Uptime 60s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [
+                "dash-uptime-func"
+            ]
+        ]
+    },
+    {
+        "id": "dash-uptime-func",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Calc Uptime",
+        "func": "const start = flow.get('startTime') || Date.now();\nflow.set('startTime', start);\nconst s = Math.floor((Date.now() - start) / 1000);\nconst h = Math.floor(s / 3600);\nconst m = Math.floor((s % 3600) / 60);\nconst sec = s % 60;\nmsg.payload = `${h}h ${m}m ${sec}s`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "dash-uptime-text"
+            ]
+        ]
+    },
+    {
+        "id": "dash-uptime-text",
+        "type": "ui-text",
+        "z": "tab-dashboard",
+        "group": "grp-uptime",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "Uptime Text",
+        "label": "Server Uptime",
+        "format": "⏱️ {{msg.payload}}",
+        "layout": "row-spread",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "dash-hw-inject",
+        "type": "inject",
+        "z": "tab-dashboard",
+        "name": "HW Poll 15s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "15",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 5,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "dash-hw-exec"
+            ]
+        ]
+    },
+    {
+        "id": "dash-hw-exec",
+        "type": "exec",
+        "z": "tab-dashboard",
+        "command": "bash -c \"CPU=$(top -bn1 | grep 'Cpu(s)' | awk '{print $2+$4}'); RAM=$(free | awk '/Mem/{printf \\\"%.0f\\\", $3/$2*100}'); TEMP=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null | awk '{printf \\\"%.1f\\\", $1/1000}'); echo $CPU $RAM $TEMP\"",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "name": "Get CPU/RAM/Temp",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "dash-hw-parse"
+            ],
+            [
+                "dash-hw-err"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dash-hw-err",
+        "type": "debug",
+        "z": "tab-dashboard",
+        "name": "HW Exec Error",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 600,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "dash-hw-parse",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Parse HW Stats",
+        "func": "const parts = (msg.payload || '').toString().trim().split(/\\s+/);\nconst cpu  = parseFloat(parts[0]) || 0;\nconst ram  = parseFloat(parts[1]) || 0;\nconst temp = parseFloat(parts[2]) || 0;\nreturn [\n  { payload: cpu,  topic: 'CPU %' },\n  { payload: ram,  topic: 'RAM %' },\n  { payload: temp, topic: '°C' }\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 340,
+        "wires": [
+            [
+                "dash-cpu-chart"
+            ],
+            [
+                "dash-ram-chart"
+            ],
+            [
+                "dash-temp-chart"
+            ]
+        ]
+    },
+    {
+        "id": "dash-cpu-chart",
+        "type": "ui-chart",
+        "z": "tab-dashboard",
+        "group": "grp-cpu",
+        "name": "CPU Chart",
+        "label": "CPU %",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "timestamp",
+        "ymin": "0",
+        "ymax": "100",
+        "action": "append",
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "width": "4",
+        "height": "4",
+        "x": 860,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-ram-chart",
+        "type": "ui-chart",
+        "z": "tab-dashboard",
+        "group": "grp-ram",
+        "name": "RAM Chart",
+        "label": "RAM %",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "timestamp",
+        "ymin": "0",
+        "ymax": "100",
+        "action": "append",
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "width": "4",
+        "height": "4",
+        "x": 860,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-temp-chart",
+        "type": "ui-chart",
+        "z": "tab-dashboard",
+        "group": "grp-temp",
+        "name": "Temp Chart",
+        "label": "°C",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "timestamp",
+        "ymin": "0",
+        "ymax": "90",
+        "action": "append",
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "width": "4",
+        "height": "4",
+        "x": 860,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-dd-inject",
+        "type": "inject",
+        "z": "tab-dashboard",
+        "name": "Refresh Dropdown 10s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 4,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 120,
+        "y": 520,
+        "wires": [
+            [
+                "dash-dd-serverinfo"
+            ]
+        ]
+    },
+    {
+        "id": "dash-dd-serverinfo",
+        "type": "serverinfo",
+        "z": "tab-dashboard",
+        "name": "Players for Dropdown",
+        "server": "cfg-server",
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "dash-dd-func"
+            ]
+        ]
+    },
+    {
+        "id": "dash-dd-func",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Build Options",
+        "func": "const players = (msg.payload && msg.payload.players) ? msg.payload.players : [];\nconst opts = players.map(p => ({ value: p.name, label: p.name }));\nmsg.ui_update = { options: opts };\nmsg.payload = opts;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "dash-player-dd"
+            ]
+        ]
+    },
+    {
+        "id": "dash-player-dd",
+        "type": "ui-dropdown",
+        "z": "tab-dashboard",
+        "group": "grp-kickban",
+        "name": "Player Select",
+        "label": "Select Player",
+        "tooltip": "",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "multiple": false,
+        "options": [],
+        "payload": "",
+        "topic": "selectedPlayer",
+        "topicType": "str",
+        "x": 880,
+        "y": 520,
+        "wires": [
+            [
+                "dash-store-sel"
+            ]
+        ]
+    },
+    {
+        "id": "dash-store-sel",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Store Selection",
+        "func": "flow.set('selectedPlayer', msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dash-kick-btn",
+        "type": "ui-button",
+        "z": "tab-dashboard",
+        "group": "grp-kickban",
+        "name": "Kick",
+        "label": "⚡ Kick",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "tooltip": "Kick selected player",
+        "color": "#ffffff",
+        "bgcolor": "#f59e0b",
+        "payload": "kick",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "dash-action-func"
+            ]
+        ]
+    },
+    {
+        "id": "dash-ban-btn",
+        "type": "ui-button",
+        "z": "tab-dashboard",
+        "group": "grp-kickban",
+        "name": "Ban",
+        "label": "🚫 Ban",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "tooltip": "Permanently ban selected player",
+        "color": "#ffffff",
+        "bgcolor": "#dc2626",
+        "payload": "ban",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 880,
+        "y": 620,
+        "wires": [
+            [
+                "dash-action-func"
+            ]
+        ]
+    },
+    {
+        "id": "dash-action-func",
+        "type": "function",
+        "z": "tab-dashboard",
+        "name": "Build RCON Command",
+        "func": "const player = flow.get('selectedPlayer');\nif (!player) { node.warn('No player selected'); return null; }\nif (msg.payload === 'kick') msg.payload = `kick ${player} Kicked by admin via dashboard`;\nelse if (msg.payload === 'ban') msg.payload = `ban ${player} Banned by admin via dashboard`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 600,
+        "wires": [
+            [
+                "dash-action-rcon"
+            ]
+        ]
+    },
+    {
+        "id": "dash-action-rcon",
+        "type": "rcon",
+        "z": "tab-dashboard",
+        "name": "RCON Kick/Ban",
+        "server": "cfg-server",
+        "command": "",
+        "x": 1360,
+        "y": 600,
+        "wires": [
+            [
+                "dash-action-debug"
+            ]
+        ]
+    },
+    {
+        "id": "dash-action-debug",
+        "type": "debug",
+        "z": "tab-dashboard",
+        "name": "Action Result",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1580,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "dash-restart-btn",
+        "type": "ui-button",
+        "z": "tab-dashboard",
+        "group": "grp-restart",
+        "name": "Restart",
+        "label": "🔁 Restart Server",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "tooltip": "Safely restart the Minecraft server",
+        "color": "#ffffff",
+        "bgcolor": "#7c3aed",
+        "payload": "restart",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 120,
+        "y": 720,
+        "wires": [
+            [
+                "dash-restart-confirm"
+            ]
+        ]
+    },
+    {
+        "id": "dash-restart-confirm",
+        "type": "ui-notification",
+        "z": "tab-dashboard",
+        "position": "center",
+        "colorDefault": false,
+        "color": "#7c3aed",
+        "displayTime": "0",
+        "showCountdown": false,
+        "outputs": 2,
+        "allowDismiss": true,
+        "dismissText": "Cancel",
+        "raw": false,
+        "x": 380,
+        "y": 720,
+        "wires": [
+            [
+                "dash-restart-rcon"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dash-restart-rcon",
+        "type": "rcon",
+        "z": "tab-dashboard",
+        "name": "Send Stop",
+        "server": "cfg-server",
+        "command": "stop",
+        "x": 640,
+        "y": 720,
+        "wires": [
+            [
+                "dash-restart-debug"
+            ]
+        ]
+    },
+    {
+        "id": "dash-restart-debug",
+        "type": "debug",
+        "z": "tab-dashboard",
+        "name": "Restart Result",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 860,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "7e0f7bf042409a96",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@tomsith/node-red-contrib-minecraft": "0.7.7",
+            "node-red-contrib-discord-advanced": "3.6.0",
+            "@flowfuse/node-red-dashboard": "1.29.0"
+        }
+    }
+]
